@@ -1,4 +1,4 @@
-# calculator In Javascript developed by shakeel229 as a Excercise
+# Calculator In Javascript developed by shakeel229 as a Excercise at Generation
 
 ## info
 
