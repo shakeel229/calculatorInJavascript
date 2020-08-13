@@ -72,6 +72,8 @@ keys.addEventListener(`click`, (e) => {
         calculator.dataset.modValue = "";
         calculator.dataset.operator = "";
         calculator.dataset.previousKeyType = "";
+        firstValue = "";
+        secondValue = "";
       } else {
         key.textContent = "AC";
       }
