@@ -1,4 +1,6 @@
-class calculatorManager {
+export default class CalculatorManager {
+  constructor() {}
+
   UiEventsHandler() {
     //grabbing the calculator div from DOM  to work with buttons and attach Event Listeners
     const calculator = document.querySelector(`.calculator`);
@@ -136,6 +138,7 @@ class calculatorManager {
       }
     });
   }
+
   // this method performs calculation on given 2 values and the operator and returns output number
   performCalculation(n1, operator, n2) {
     const firstNum = parseFloat(n1);
@@ -146,7 +149,15 @@ class calculatorManager {
     if (operator === "divide") return firstNum / secondNum;
   }
 }
-//declaring class object
-const calculator = new calculatorManager();
-//calling method to handle click events
-calculator.UiEventsHandler();
+//const calculator = new CalculatorManager();
+// //calling method to handle click events
+//calculator.UiEventsHandler();
+window.addEventListener("load", function () {
+  //declaring class object
+  const calculator = new CalculatorManager();
+  // //calling method to handle click events
+  calculator.UiEventsHandler();
+});
+window.addEventListener("DOMContentLoaded", (event) => {
+  console.log("DOM fully loaded and parsed");
+});

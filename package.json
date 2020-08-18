@@ -1,0 +1,25 @@
+{
+  "name": "calculatorinjavascript",
+  "version": "1.0.0",
+  "description": "Following Technologies have been used to develop this Calculator",
+  "main": "app.js",
+  "dependencies": {
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.0",
+    "parcel": "^1.12.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakeel229/calculatorInJavascript.git"
+  },
+  "author": "shakeel229",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shakeel229/calculatorInJavascript/issues"
+  },
+  "homepage": "https://github.com/shakeel229/calculatorInJavascript#readme"
+}
