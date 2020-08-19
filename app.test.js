@@ -1,39 +1,17 @@
+import path from "path";
+import fs from "fs";
+const html = fs.readFileSync(path.resolve(__dirname, "./index.html"), "utf8");
 import CalculatorManager from "./app.js";
 describe("Test calculator Operations", function () {
   let testCalculator;
-  //using JSDom of jest Library below value contains html to build documnet based on actual content of index.html
-  const innerbody = `  <div class="container">
-  <div class="calculator">
-    <div class="calculator__display">0</div>
-
-    <div class="calculator__keys">
-      <button class="key--operator" data-action="add">+</button>
-      <button class="key--operator" data-action="subtract">-</button>
-      <button class="key--operator" data-action="multiply">&times;</button>
-      <button class="key--operator" data-action="divide">÷</button>
-      <button id="seven">7</button>
-      <button>8</button>
-      <button>9</button>
-      <button id="four">4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>0</button>
-      <button data-action="decimal">.</button>
-      <button data-action="clear">AC</button>
-      <button class="key--equal" data-action="calculate">=</button>
-    </div>
-  </div>
-</div>`;
   //setting index.html to DOM
-  document.body.innerHTML = innerbody;
+  document.body.innerHTML = html.toString();
   const sevenKey = document.querySelector(`#seven`);
   const fourKey = document.querySelector(`#four`);
   const decimalBtn = document.querySelector(`[data-action="decimal"]`);
 
   const display = document.querySelector(`.calculator__display`);
+  display.textContent = "";
 
   beforeAll(function () {
     testCalculator = new CalculatorManager();
@@ -79,8 +57,7 @@ describe("Test calculator Operations", function () {
   test("Subtract Two Float Numbers", function () {
     const myHTML = `<div><h1>Shakeel Anjum</h1></div>`;
     const result = testCalculator.performCalculation(3.46, "subtract", 1.97);
-    const calculator = document.querySelector(`.calculator`);
-    const p = parseInt(display.innerHTML);
+
     expect(result).toBe(1.49);
   });
   test("If User Click Decimal button when display already contain it Calculator will not register it ", function () {
@@ -95,6 +72,7 @@ describe("Test calculator Operations", function () {
     expect(displayScreen).toBe(7.474);
   });
   test("If User Click Decimal button after Operator key or calculate key save show 0. on screen ", function () {
+    display.textContent = "";
     sevenKey.click();
     decimalBtn.click();
     fourKey.click();
@@ -104,5 +82,46 @@ describe("Test calculator Operations", function () {
     fourKey.click();
     const displayScreen = parseFloat(display.textContent); // retrieve value
     expect(displayScreen).toBe(7.474);
+    expect(displayScreen).toBeLessThan(7.475);
+  });
+  test("If User Click Calculate Btn '=' then perfomr calculation and show output on screen ", function () {
+    document.querySelector(`[data-action="clear"]`).click();
+    sevenKey.click();
+    document.querySelector(`[data-action="add"]`).click();
+    fourKey.click();
+    document.querySelector(`[data-action="calculate"]`).click();
+
+    const displayScreen = parseFloat(display.textContent); // retrieve value
+    expect(displayScreen).toBe(11);
+  });
+  //Calculate Button '=' testing cases
+  test("If User Click Calculate Btn '=' then perform calculation and show output on screen ", function () {
+    //
+    const d = document.querySelector(`[data-action="clear"]`);
+    d.click();
+    d.click(); // clicking clear button to remove all previous data and clear calculator for new calculation
+    sevenKey.click(); //click seven key
+    document.querySelector(`[data-action="add"]`).click(); //click plus button
+    fourKey.click(); //click four key
+    document.querySelector(`[data-action="calculate"]`).click(); //click calcualte button
+
+    const displayScreen = parseFloat(display.textContent); // retrieve value from screen
+    expect(displayScreen).toBe(11);
+  });
+  test("If User Click Calculate Btn '=' second time move last calculation result to firstValue ", function () {
+    //
+    const d = document.querySelector(`[data-action="clear"]`);
+    d.click();
+    d.click(); // clicking clear button to remove all previous data and clear calculator for new calculation
+    document.getElementById("three").click();
+    const displayScreen = parseFloat(display.textContent); // retrieve value
+    expect(displayScreen).toBe(3);
+    document.querySelector(`[data-action="add"]`).click();
+    fourKey.click();
+    document.querySelector(`[data-action="calculate"]`).click(); //first time user click calculate btn
+    expect(parseFloat(display.textContent)).toBe(7);
+    document.querySelector(`[data-action="calculate"]`).click(); //second time user click calculate btn
+    const s = document.querySelector(`[data-action="firstValue"]`).textContent; //first valu after second time user click calculate btn
+    expect(parseFloat(s)).toBe(7);
   });
 });
