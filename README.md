@@ -26,9 +26,7 @@ This calculator provides following basic features
 
 ## Link to live Page :computer:
 
-```
-Repo is Live at Netlify [Netlity Link](https://javascript-calculator-shakeel.netlify.app/){:target="_blank"}
-```
+Repo is Live at Netlify [Netlity Link](https://javascript-calculator-shakeel.netlify.app/){:target="\_blank"}
 
 ![Demo UI Page!](/demo.gif "Landing Page")
 
