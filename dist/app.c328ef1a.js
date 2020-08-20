@@ -247,7 +247,8 @@ var CalculatorManager = /*#__PURE__*/function () {
 
             if (_firstValue) {
               if (previousKeyType === "calculate") {
-                _firstValue = displayedNum;
+                _firstValue = displayedNum; //calculator.dataset.firstValue = firstValue;
+
                 _secondValue = calculator.dataset.modValue;
                 console.log(_firstValue + ":" + _secondValue + calculator.dataset.modValue);
               } //calling calculation method on values
@@ -321,7 +322,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60873" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64848" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

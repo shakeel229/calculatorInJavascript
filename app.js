@@ -117,6 +117,8 @@ export default class CalculatorManager {
           if (firstValue) {
             if (previousKeyType === "calculate") {
               firstValue = displayedNum;
+              calculator.dataset.firstValue = firstValue;
+
               secondValue = calculator.dataset.modValue;
               console.log(
                 firstValue + ":" + secondValue + calculator.dataset.modValue

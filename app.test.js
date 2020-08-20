@@ -85,16 +85,6 @@ describe("Test calculator Operations", function () {
     expect(displayScreen).toBe(7.474);
     expect(displayScreen).toBeLessThan(7.475);
   });
-  test("If User Click Calculate Btn '=' then perfomr calculation and show output on screen ", function () {
-    document.querySelector(`[data-action="clear"]`).click();
-    sevenKey.click();
-    document.querySelector(`[data-action="add"]`).click();
-    fourKey.click();
-    document.querySelector(`[data-action="calculate"]`).click();
-
-    const displayScreen = parseFloat(display.textContent); // retrieve value
-    expect(displayScreen).toBe(11);
-  });
   //Calculate Button '=' testing cases
   test("If User Click Calculate Btn '=' then perform calculation and show output on screen ", function () {
     //
@@ -122,8 +112,34 @@ describe("Test calculator Operations", function () {
     document.querySelector(`[data-action="calculate"]`).click(); //first time user click calculate btn
     expect(parseFloat(display.textContent)).toBe(7);
     document.querySelector(`[data-action="calculate"]`).click(); //second time user click calculate btn
-    document.querySelector(`[data-action="calculate"]`).click(); //second time user click calculate btn
+
     const s = calculator.dataset.firstValue; //first valu after second time user click calculate btn
     expect(parseFloat(s)).toBe(7);
+  });
+  //clear button test casses
+  test("If User Click Clear Button after some calculation clear display screen to Zero", function () {
+    sevenKey.click();
+    document.querySelector(`[data-action="add"]`).click();
+    fourKey.click();
+    document.querySelector(`[data-action="calculate"]`).click();
+    document.querySelector(`[data-action="clear"]`).click(); //clicking clear button to screen clear screen
+    expect(display.textContent).toBe("0"); //expecting screen be clear to Zero value
+  });
+  test("If User Click Clear Button two times expect first value last and pervious key all values to empty", function () {
+    //Values in dataset attributes of calculator before clicking clear Button
+    //expecting values in attritutes from  clcalculations in previous test cases
+    expect(parseFloat(calculator.dataset.firstValue)).toBeGreaterThan(0);
+    expect(parseFloat(calculator.dataset.modValue)).toBeGreaterThan(0);
+    expect(calculator.dataset.previousKeyType).toBe(
+      "clear" || "operator" || "decimal" || "calculate"
+    );
+    document.querySelector(`[data-action="clear"]`).click(); //clicking clear button to screen clear screen 2 time
+    document.querySelector(`[data-action="clear"]`).click(); //clicking clear button to screen clear screen
+    //expecting all values to be clear
+    expect(calculator.dataset.firstValue).toBe("");
+    expect(calculator.dataset.modValue).toBe("");
+    expect(calculator.dataset.operator).toBe("");
+    expect(calculator.dataset.previousKeyType).toBe("clear");
+    //expect(display.textContent).toBe("0"); //expecting screen be clear to Zero value
   });
 });
