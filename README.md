@@ -24,11 +24,31 @@ This calculator provides following basic features
 3. It has functionality to clear screen values.
 4. It has ability to perform last calculation again by clicking = button
 
+:sailboat:
+
 ## Link to live Page
 
-Github Page of repository is Live [Here](https://shakeel229.github.io/calculatorInJavascript/).  
+Github Page of repository is Live [Here](https://javascript-calculator-shakeel.netlify.app//).  
 ![Demo UI Page!](/demo.gif "Landing Page")
 
+### Install ⚙️
+
+```
+npm install / yarn install
+```
+
+### Start 🏃
+
+```
+npm run start
+```
+
+### Build 😷
+
+```
+npm run build
+:clipboard:
 ## Note
 
 This task was completed by following the tutorial at the following tutorial at [freecodecamp.org](https://zellwk.com/blog/calculator-part-3/)
+```

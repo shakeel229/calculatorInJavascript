@@ -9,6 +9,7 @@ describe("Test calculator Operations", function () {
   const sevenKey = document.querySelector(`#seven`);
   const fourKey = document.querySelector(`#four`);
   const decimalBtn = document.querySelector(`[data-action="decimal"]`);
+  const calculator = document.querySelector(`.calculator`);
 
   const display = document.querySelector(`.calculator__display`);
   display.textContent = "";
@@ -121,7 +122,8 @@ describe("Test calculator Operations", function () {
     document.querySelector(`[data-action="calculate"]`).click(); //first time user click calculate btn
     expect(parseFloat(display.textContent)).toBe(7);
     document.querySelector(`[data-action="calculate"]`).click(); //second time user click calculate btn
-    const s = document.querySelector(`[data-action="firstValue"]`).textContent; //first valu after second time user click calculate btn
+    document.querySelector(`[data-action="calculate"]`).click(); //second time user click calculate btn
+    const s = calculator.dataset.firstValue; //first valu after second time user click calculate btn
     expect(parseFloat(s)).toBe(7);
   });
 });
